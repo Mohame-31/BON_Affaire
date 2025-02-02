@@ -776,274 +776,285 @@
    </button>
 </div>
 <script>
-   // فتح وإغلاق نافذة الدعم
-  const supportButton = document.getElementById('supportButton');
-  const supportModal = document.getElementById('supportModal');
-  const closeModal = document.getElementById('closeModal');
+    document.addEventListener('DOMContentLoaded', function() {
+  const carousels = document.querySelectorAll('.carousel-inner');
 
-  supportButton.addEventListener('click', () => {
-    supportModal.classList.remove('hidden');
-  });
+  carousels.forEach(carousel => {
+    const items = carousel.querySelectorAll('.carousel-item');
+    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+    const prevBtn = carousel.parentElement.querySelector('.carousel-prev');
+    const nextBtn = carousel.parentElement.querySelector('.carousel-next');
+    let currentIndex = 0;
+    let startX = 0;
+    let endX = 0;
 
-  closeModal.addEventListener('click', () => {
-    supportModal.classList.add('hidden');
-  });
+    const showSlide = (index) => {
+      items.forEach(item => item.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
 
-  document.addEventListener('DOMContentLoaded', function() {
-    // نظام الكاروسيل الجديد
-    const carousels = document.querySelectorAll('.carousel-inner');
-    
-    carousels.forEach(carousel => {
-      const items = carousel.querySelectorAll('.carousel-item');
-      const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
-      const prevBtn = carousel.parentElement.querySelector('.carousel-prev');
-      const nextBtn = carousel.parentElement.querySelector('.carousel-next');
-      let currentIndex = 0;
+      items[index].classList.add('active');
+      dots[index].classList.add('active');
+    };
 
-      const showSlide = (index) => {
-        items.forEach(item => item.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        items[index].classList.add('active');
-        dots[index].classList.add('active');
-      };
+    // التهيئة الأولية
+    showSlide(currentIndex);
 
-      // التهيئة الأولية
-      showSlide(currentIndex);
-
-      // أحداث النقاط
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          currentIndex = index;
-          showSlide(currentIndex);
-        });
-      });
-
-      // أحداث الأسهم
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
+    // أحداث النقاط
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
         showSlide(currentIndex);
       });
+    });
 
-      nextBtn.addEventListener('click', () => {
+    // أحداث الأسهم
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      showSlide(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      showSlide(currentIndex);
+    });
+
+    // أحداث السحب
+    carousel.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+      endX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchend', () => {
+      if (startX > endX + 50) {
+        // السحب لليسار
         currentIndex = (currentIndex + 1) % items.length;
         showSlide(currentIndex);
-      });
+      } else if (startX < endX - 50) {
+        // السحب لليمين
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showSlide(currentIndex);
+      }
     });
+  });
 
-    // بقية الوظائف الأصلية
-    const modal = document.getElementById("orderModal");
-    const openModalButtons = document.querySelectorAll(".open-modal");
-    const closeModalButton = document.querySelector(".close");
+  // بقية الوظائف الأصلية
+  const modal = document.getElementById("orderModal");
+  const openModalButtons = document.querySelectorAll(".open-modal");
+  const closeModalButton = document.querySelector(".close");
 
-    openModalButtons.forEach(button => {
-      button.addEventListener("click", (event) => {
-        const productCard = event.target.closest('.three-d-card');
-        const productName = productCard.querySelector('.product-name').textContent;
-        const productDescription = productCard.querySelector('.product-description').textContent;
-        const productPrice = productCard.querySelector('.product-price').textContent;
+  openModalButtons.forEach(button => {
+    button.addEventListener("click", (event) => {
+      const productCard = event.target.closest('.three-d-card');
+      const productName = productCard.querySelector('.product-name').textContent;
+      const productDescription = productCard.querySelector('.product-description').textContent;
+      const productPrice = productCard.querySelector('.product-price').textContent;
 
-        document.getElementById('productName').value = productName;
-        document.getElementById('productDescription').value = productDescription;
-        document.getElementById('productPrice').value = productPrice;
+      document.getElementById('productName').value = productName;
+      document.getElementById('productDescription').value = productDescription;
+      document.getElementById('productPrice').value = productPrice;
 
-        modal.style.display = "block";
-      });
+      modal.style.display = "block";
     });
+  });
 
-    closeModalButton.addEventListener("click", () => {
+  closeModalButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  window.addEventListener("click", (event) => {
+    if (event.target == modal) {
       modal.style.display = "none";
-    });
+    }
+  });
 
-    window.addEventListener("click", (event) => {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    });
-
-    const scrollToElements = document.querySelectorAll('.scroll-to');
-    scrollToElements.forEach(element => {
-      element.addEventListener('click', function(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        window.scrollTo({
-          top: targetElement.offsetTop,
-          behavior: 'smooth'
-        });
+  const scrollToElements = document.querySelectorAll('.scroll-to');
+  scrollToElements.forEach(element => {
+    element.addEventListener('click', function(event) {
+      event.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth'
       });
     });
+  });
 
-    const orderForm = document.getElementById('orderForm');
-    const phoneInput = document.getElementById('phone');
-    const phoneError = document.getElementById('phoneError');
-    const stateInput = document.getElementById('state');
-    const stateError = document.getElementById('stateError');
-    const notification = document.getElementById('notification');
-    const closeNotificationButton = document.querySelector('.close-notification');
+  const orderForm = document.getElementById('orderForm');
+  const phoneInput = document.getElementById('phone');
+  const phoneError = document.getElementById('phoneError');
+  const stateInput = document.getElementById('state');
+  const stateError = document.getElementById('stateError');
+  const notification = document.getElementById('notification');
+  const closeNotificationButton = document.querySelector('.close-notification');
 
-    orderForm.addEventListener('submit', function(event) {
-      const phoneValue = phoneInput.value;
-      const phonePattern = /^(05|06|07)\d{8}$/;
-      const stateValue = stateInput.value;
+  orderForm.addEventListener('submit', function(event) {
+    const phoneValue = phoneInput.value;
+    const phonePattern = /^(05|06|07)\d{8}$/;
+    const stateValue = stateInput.value;
 
-      let valid = true;
+    let valid = true;
 
-      if (!phonePattern.test(phoneValue)) {
-        event.preventDefault();
-        phoneError.classList.remove('hidden');
-        valid = false;
-      } else {
-        phoneError.classList.add('hidden');
-      }
+    if (!phonePattern.test(phoneValue)) {
+      event.preventDefault();
+      phoneError.classList.remove('hidden');
+      valid = false;
+    } else {
+      phoneError.classList.add('hidden');
+    }
 
-      if (stateValue === "") {
-        event.preventDefault();
-        stateError.classList.remove('hidden');
-        valid = false;
-      } else {
-        stateError.classList.add('hidden');
-      }
+    if (stateValue === "") {
+      event.preventDefault();
+      stateError.classList.remove('hidden');
+      valid = false;
+    } else {
+      stateError.classList.add('hidden');
+    }
 
-      if (valid) {
-        event.preventDefault();
-        const order = {
-          productName: document.getElementById('productName').value,
-          productDescription: document.getElementById('productDescription').value,
-          productPrice: document.getElementById('productPrice').value,
-          quantity: document.getElementById('quantity').value,
-          date: new Date().toLocaleDateString()
-        };
+    if (valid) {
+      event.preventDefault();
+      const order = {
+        productName: document.getElementById('productName').value,
+        productDescription: document.getElementById('productDescription').value,
+        productPrice: document.getElementById('productPrice').value,
+        quantity: document.getElementById('quantity').value,
+        date: new Date().toLocaleDateString()
+      };
 
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        orders.push(order);
-        localStorage.setItem('orders', JSON.stringify(orders));
+      const orders = JSON.parse(localStorage.getItem('orders')) || [];
+      orders.push(order);
+      localStorage.setItem('orders', JSON.stringify(orders));
 
-        const submitButton = orderForm.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
-        fetch(orderForm.action, {
-          method: orderForm.method,
-          body: new FormData(orderForm),
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(response => {
-          if (response.ok) {
-            notification.style.display = 'block';
-            setTimeout(() => {
-              notification.style.display = 'none';
-              modal.style.display = 'none';
-              window.scrollTo({
-                top: document.getElementById('products').offsetTop,
-                behavior: 'smooth'
-              });
-            }, 3000);
-          } else {
-            response.json().then(data => {
-              if (Object.hasOwn(data, 'errors')) {
-                alert(data["errors"].map(error => error["message"]).join(", "));
-              } else {
-                alert("Oops! حدث خطأ ما عند إرسال النموذج.");
-              }
+      const submitButton = orderForm.querySelector('button[type="submit"]');
+      submitButton.disabled = true;
+      fetch(orderForm.action, {
+        method: orderForm.method,
+        body: new FormData(orderForm),
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          notification.style.display = 'block';
+          setTimeout(() => {
+            notification.style.display = 'none';
+            modal.style.display = 'none';
+            window.scrollTo({
+              top: document.getElementById('products').offsetTop,
+              behavior: 'smooth'
             });
-          }
-        }).catch(error => {
-          alert("Oops! حدث خطأ ما عند إرسال النموذج.");
-        }).finally(() => {
-          submitButton.disabled = false;
-        });
-      }
-    });
+          }, 3000);
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              alert(data["errors"].map(error => error["message"]).join(", "));
+            } else {
+              alert("Oops! حدث خطأ ما عند إرسال النموذج.");
+            }
+          });
+        }
+      }).catch(error => {
+        alert("Oops! حدث خطأ ما عند إرسال النموذج.");
+      }).finally(() => {
+        submitButton.disabled = false;
+      });
+    }
+  });
 
-    closeNotificationButton.addEventListener('click', () => {
-      notification.style.display = 'none';
-    });
+  closeNotificationButton.addEventListener('click', () => {
+    notification.style.display = 'none';
+  });
 
-    // نظام المنتجات من localStorage
-    const products = JSON.parse(localStorage.getItem('products')) || [];
-    const productsContainer = document.getElementById('productsContainer');
+  // نظام المنتجات من localStorage
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const productsContainer = document.getElementById('productsContainer');
 
-    products.forEach(product => {
-      const productCard = `
-        <div class="bg-white shadow-md rounded-md p-4 three-d-card">
-          <div class="relative group">
-            <div class="carousel-inner relative overflow-hidden rounded-lg">
-              ${product.images.map((image, index) => `
-                <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                  <img src="${image}" alt="${product.name}" class="w-full aspect-square object-cover">
-                </div>
-              `).join('')}
-            </div>
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-              ${product.images.map(() => `
-                <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all"></button>
-              `).join('')}
-            </div>
-            <button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">←</button>
-            <button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">→</button>
+  products.forEach(product => {
+    const productCard = `
+      <div class="bg-white shadow-md rounded-md p-4 three-d-card">
+        <div class="relative group">
+          <div class="carousel-inner relative overflow-hidden rounded-lg">
+            ${product.images.map((image, index) => `
+              <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                <img src="${image}" alt="${product.name}" class="w-full aspect-square object-cover">
+              </div>
+            `).join('')}
           </div>
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+            ${product.images.map(() => `
+              <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all"></button>
+            `).join('')}
+          </div>
+          <button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">←</button>
+          <button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">→</button>
+        </div>
+        <div class="flex items-center mb-4">
+          ${'<i class="fas fa-star text-yellow-500"></i>'.repeat(product.rating)}
+          ${'<i class="fas fa-star text-gray-300"></i>'.repeat(5 - product.rating)}
+        </div>
+        <h3 class="text-xl font-bold text-blue-900 mb-2 product-name">${product.name}</h3>
+        <p class="text-gray-600 mb-4 product-description">${product.description}</p>
+        <p class="text-gray-500 line-through mb-1">السعر السابق: dz${product.previousPrice}</p>
+        <p class="text-red-500 font-bold mb-4 product-price">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
+        <button class="px-4 py-2 bg-blue-900 text-white rounded-md open-modal">اشتري الآن</button>
+      </div>
+    `;
+    productsContainer.innerHTML += productCard;
+  });
+});
+
+// تحميل المنتجات من localStorage وعرضها
+function loadProductsFromStorage() {
+  const products = JSON.parse(localStorage.getItem('products')) || [];
+  const productsContainer = document.getElementById('productsContainer');
+
+  products.forEach(product => {
+    const productCard = `
+      <div class="bg-white shadow-md rounded-md p-4 three-d-card">
+        <div class="relative group">
+          <div class="carousel-inner relative overflow-hidden rounded-lg">
+            ${product.images.map((img, index) => `
+              <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                <img src="${img}" alt="${product.name}" class="w-full aspect-square object-cover">
+              </div>
+            `).join('')}
+          </div>
+          <!-- النقاط والأسهم (نفس الهيكل الحالي) -->
+        </div>
+        <div class="mt-4">
           <div class="flex items-center mb-4">
             ${'<i class="fas fa-star text-yellow-500"></i>'.repeat(product.rating)}
             ${'<i class="fas fa-star text-gray-300"></i>'.repeat(5 - product.rating)}
           </div>
-          <h3 class="text-xl font-bold text-blue-900 mb-2 product-name">${product.name}</h3>
-          <p class="text-gray-600 mb-4 product-description">${product.description}</p>
+          <h3 class="text-xl font-bold text-blue-900 mb-2">${product.name}</h3>
+          <p class="text-gray-600 mb-4">${product.description}</p>
           <p class="text-gray-500 line-through mb-1">السعر السابق: dz${product.previousPrice}</p>
-          <p class="text-red-500 font-bold mb-4 product-price">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
-          <button class="px-4 py-2 bg-blue-900 text-white rounded-md open-modal">اشتري الآن</button>
+          <p class="text-red-500 font-bold mb-4">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
+          <button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800">
+            اشتري الآن
+          </button>
         </div>
-      `;
-      productsContainer.innerHTML += productCard;
-    });
+      </div>
+    `;
+    productsContainer.innerHTML += productCard;
   });
-  // تحميل المنتجات من localStorage وعرضها
-function loadProductsFromStorage() {
-    const products = JSON.parse(localStorage.getItem('products')) || [];
-    const productsContainer = document.getElementById('productsContainer');
-
-    products.forEach(product => {
-        const productCard = `
-            <div class="bg-white shadow-md rounded-md p-4 three-d-card">
-                <div class="relative group">
-                    <div class="carousel-inner relative overflow-hidden rounded-lg">
-                        ${product.images.map((img, index) => `
-                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                                <img src="${img}" alt="${product.name}" class="w-full aspect-square object-cover">
-                            </div>
-                        `).join('')}
-                    </div>
-                    <!-- النقاط والأسهم (نفس الهيكل الحالي) -->
-                </div>
-                <div class="mt-4">
-                    <div class="flex items-center mb-4">
-                        ${'<i class="fas fa-star text-yellow-500"></i>'.repeat(product.rating)}
-                        ${'<i class="fas fa-star text-gray-300"></i>'.repeat(5 - product.rating)}
-                    </div>
-                    <h3 class="text-xl font-bold text-blue-900 mb-2">${product.name}</h3>
-                    <p class="text-gray-600 mb-4">${product.description}</p>
-                    <p class="text-gray-500 line-through mb-1">السعر السابق: dz${product.previousPrice}</p>
-                    <p class="text-red-500 font-bold mb-4">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
-                    <button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800">
-                        اشتري الآن
-                    </button>
-                </div>
-            </div>
-        `;
-        productsContainer.innerHTML += productCard;
-    });
 }
 
 // استدعاء الدالة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', loadProductsFromStorage);
+
 // في نهاية ملف script في index.html
 function refreshProducts() {
-    const productsContainer = document.getElementById('productsContainer');
-    productsContainer.innerHTML = ''; // مسح المحتوى القديم
-    loadProductsFromStorage(); // إعادة تحميل المنتجات
+  const productsContainer = document.getElementById('productsContainer');
+  productsContainer.innerHTML = ''; // مسح المحتوى القديم
+  loadProductsFromStorage(); // إعادة تحميل المنتجات
 }
 
 // استدعاء الدالة عند تغيير localStorage
 window.addEventListener('storage', refreshProducts);
-  </script>
+</script>
 </body>
 </html>
