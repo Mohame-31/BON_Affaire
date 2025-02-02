@@ -1,0 +1,1049 @@
+<html lang="ar">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+   BON Affaire
+  </title>
+  <link rel="icon" type="image/x-icon" href="assiste/logo.ico">
+<meta content="متجر إلكتروني يقدم مجموعة متنوعة BON Affaire من المنتجات بأسعار تنافسية. تسوق الآن!" name="description"/>
+<script src="https://cdn.tailwindcss.com">
+</script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+   body {
+      font-family: 'Cairo', sans-serif;
+    }
+.three-d-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.three-d-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 8px 15px rgba(139, 0, 0, 0.3), /* ظل خارجي أحمر داكن */
+    0 0 10px rgba(255, 0, 0, 0.1) inset; /* ظل داخلي أحمر خفيف */
+  background-color: #fff5f5; /* خلفية حمراء فاتحة */
+}
+
+    .carousel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    
+
+    .carousel-inner img {
+      min-width: 100%;
+      transition: opacity 1s ease;
+    }
+
+ /* ابدأ النسخ هنا */
+.carousel-item {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+  display: block;
+  opacity: 1;
+}
+
+.carousel-dot.active {
+  background: rgba(255,255,255,0.9) !important;
+  transform: scale(1.3);
+}
+/* انتهى النسخ هنا */
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 50;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #FFFFFF;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .notification {
+      display: none;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4caf50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      z-index: 100;
+    }
+    /* تصميم الأزرار الأساسية */
+    .social-btn:active {
+     animation: shake 0.3s ease;
+   }
+
+   @keyframes shake {
+     0%, 100% { transform: translateX(0); }
+     25% { transform: translateX(-3px); }
+     75% { transform: translateX(3px); }
+   } 
+.social-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #f0f0f0; /* رمادي فاتح */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* الأيقونات في الحالة العادية */
+.social-btn i {
+  font-size: 1.5rem;
+  color: #555; /* رمادي داكن */
+  transition: color 0.3s ease;
+}
+
+/* تأثيرات التحويم */
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* تأثيرات الضغط */
+.social-btn:active {
+  transform: scale(0.95);
+}
+
+/* ألوان خاصة لكل منصة عند التحويم */
+.facebook:hover {
+  background: #1877f2; /* أزرق فيسبوك */
+}
+.facebook:hover i {
+  color: white;
+}
+
+.instagram:hover {
+  background: #e1306c; /* وردي انستجرام */
+}
+.instagram:hover i {
+  color: white;
+}
+
+.tiktok:hover {
+  background: #000; /* أسود تيكتوك */
+}
+.tiktok:hover i {
+  color: white;
+}
+
+/* تلميحات توضيحية */
+.tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.social-btn:hover .tooltip {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  
+       .carousel-prev, .carousel-next {
+         opacity: 1 !important;
+         background: rgba(255,255,255,0.9) !important;
+       }
+     }
+     .store-description {
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.store-description h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.store-description p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.store-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.store-description ul li {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+  </style>
+</head>
+<body class="bg-gray-100">
+<!-- Header -->
+<header class="bg-blue-600 shadow-md">
+<div class="container mx-auto px-4 py-10 flex justify-between items-center">
+<div class="flex items-center">
+<img alt="شعار متجر BON Affaire" class="w-10 h-10 rounded-full mr-2" src="assiste/logo50.WebP"/>
+<div class="text-2xl font-bold text-white">
+      BON Affaire
+     </div>
+</div>
+</div>
+<!-- Navigation Menu -->
+<nav class="bg-blue-900 text-white mt-4">
+<div class="container mx-auto px-4 py-2 flex justify-between">
+<a class="hover:text-gray-300" href="#">
+      الرئيسية
+     </a>
+<a class="hover:text-gray-300 scroll-to" href="#products">
+      المنتجات
+     </a>
+<a class="hover:text-gray-300" href="page2/orders.html">
+      الطلبات
+     </a>
+<button class="hover:text-gray-300" id="supportButton">
+      الدعم
+     </button>
+</div>
+</nav>
+</header>
+<!-- Support Modal -->
+<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden" id="supportModal">
+<div class="bg-white rounded-lg p-6 w-11/12 md:w-1/3">
+<h2 class="text-xl font-bold mb-4">
+     اختر طريقة الدعم
+    </h2>
+<div class="flex space-x-4">
+<a class="bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200" href="tel:0792185644">
+      اتصل بنا
+     </a>
+<a class="bg-green-600 text-white py-2 px-4 rounded-lg shadow hover:bg-green-700 transition duration-200" href="mailto:sh0p0ussama31@gmail.com">
+      أرسل رسالة
+     </a>
+</div>
+<button class="mt-4 text-red-500" id="closeModal">
+     إغلاق
+    </button>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="bg-blue-300 py-8">
+<div class="container mx-auto px-4 text-center">
+<img alt="شعار المتجر" class="mx-auto mb-4" src="assiste/logo50.WebP"/>
+<p class="text-lg text-white mb-4">
+    <div class="store-description">
+    <h2>Bon Affaire – حيث الجودة تلتقي بالسعر المثالي!</h2>
+    <p>اكتشف أحدث المنتجات العصرية بأسعار تنافسية، مع ضمان الجودة وتوصيل سريع. تسوّق الآن واستمتع بأفضل العروض والتخفيضات الحصرية!</p>
+    <ul>
+        <li>🔹 <b>منتجات أصلية وعصرية</b></li>
+        <li>🔹 <b>عروض وتخفيضات مستمرة</b></li>
+        <li>🔹 <b>توصيل سريع وخدمة مميزة</b></li>
+    </ul>
+</div>
+    </p>
+<a class="px-6 py-3 bg-white text-blue-900 font-bold rounded-md scroll-to" href="#products">
+     تسوق الآن
+    </a>
+</div>
+</section>
+<!-- Main Content -->
+<main class="container mx-auto px-4 py-8">
+<!-- 3D Product Display -->
+<section class="mb-8" id="products">
+<h2 class="text-3xl font-bold text-blue-900 mb-4">
+     عرض المنتجات
+    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Product 1 -->
+<!-- منتج AirPods Pro -->
+<div class="bg-white shadow-md rounded-md p-4 three-d-card">
+<!-- كاروسيل الصور -->
+<div class="relative group">
+<div class="carousel-inner relative overflow-hidden rounded-lg">
+<!-- الصور -->
+<div class="carousel-item active">
+<img alt="AirPods Pro" class="w-full aspect-square object-cover" src="assiste/air1.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="AirPods Pro" class="w-full aspect-square object-cover" src="assiste/air2.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="AirPods Pro" class="w-full aspect-square object-cover" src="assiste/air3.WebP"/>
+</div>
+</div>
+<!-- نقاط التحكم -->
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+</div>
+<!-- أسهم التنقل -->
+<button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        ←
+       </button>
+<button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        →
+       </button>
+</div>
+<!-- تفاصيل المنتج -->
+<div class="mt-4">
+<!-- التقييمات -->
+<div class="flex items-center mb-4">
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+</div>
+<!-- اسم المنتج -->
+<h3 class="text-xl font-bold text-blue-900 mb-2 product-name">
+        AirPods Pro
+       </h3>
+<!-- الوصف -->
+<p class="text-gray-600 mb-4 product-description">
+        سماعات لاسلكية بتصميم داخل الأذن، مزودة بإلغاء الضوضاء النشط، وضع الشفافية، وتحكم باللمس.
+       </p>
+<!-- الأسعار -->
+<p class="text-gray-500 line-through mb-1">
+        السعر السابق: dz1999
+       </p>
+<p class="text-red-500 font-bold mb-4 product-price">
+        السعر الآن: dz1200
+       </p>
+<!-- زر الشراء -->
+<button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800 transition-colors">
+        اشتري الآن
+       </button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-white shadow-md rounded-md p-4 three-d-card">
+<!-- كاروسيل الصور -->
+<div class="relative group">
+<div class="carousel-inner relative overflow-hidden rounded-lg">
+<!-- الصور -->
+<div class="carousel-item active">
+<img alt="T9 Trimmer" class="w-full aspect-square object-cover" src="assiste/t1.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="T9 Trimmer" class="w-full aspect-square object-cover" src="assiste/t2.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="T9 Trimmer" class="w-full aspect-square object-cover" src="assiste/t3.WebP"/>
+</div>
+</div>
+<!-- نقاط التحكم -->
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+</div>
+<!-- أسهم التنقل -->
+<button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        ←
+       </button>
+<button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        →
+       </button>
+</div>
+<!-- تفاصيل المنتج -->
+<div class="mt-4">
+<!-- التقييمات -->
+<div class="flex items-center mb-4">
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-yellow-500">
+</i>
+<i class="fas fa-star text-gray-300">
+</i>
+</div>
+<!-- اسم المنتج -->
+<h3 class="text-xl font-bold text-blue-900 mb-2 product-name">
+        T9 Trimmer
+       </h3>
+<!-- الوصف -->
+<p class="text-gray-600 mb-4 product-description">
+        ماكينة حلاقة كهربائية بشفرات T-Blade حادة، تصميم معدني أنيق، وبطارية قابلة للشحن.
+       </p>
+<!-- الأسعار -->
+<p class="text-gray-500 line-through mb-1">
+        السعر السابق: dz1700
+       </p>
+<p class="text-red-500 font-bold mb-4 product-price">
+        السعر الآن: dz990
+       </p>
+<!-- زر الشراء -->
+<button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800 transition-colors">
+        اشتري الآن
+       </button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-white shadow-md rounded-md p-4 three-d-card">
+<!-- كاروسيل الصور -->
+<div class="relative group">
+<div class="carousel-inner relative overflow-hidden rounded-lg">
+<!-- الصور -->
+<div class="carousel-item active">
+<img alt="Geneva Watch" class="w-full aspect-square object-cover" src="assiste/Geneva1.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="Geneva Watch" class="w-full aspect-square object-cover" src="assiste/Geneva2.WebP"/>
+</div>
+<div class="carousel-item">
+<img alt="Geneva Watch" class="w-full aspect-square object-cover" src="assiste/Geneva3.WebP"/>
+</div>
+</div>
+<!-- نقاط التحكم -->
+<div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+<button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all">
+</button>
+</div>
+<!-- أسهم التنقل -->
+<button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        ←
+       </button>
+<button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+        →
+       </button>
+</div>
+<!-- تفاصيل المنتج -->
+<div class="mt-4">
+<!-- التقييمات -->
+<div class="flex items-center mb-4"><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i><i class="fas fa-star text-yellow-500"></i></div>
+<!-- اسم المنتج -->
+<h3 class="text-xl font-bold text-blue-900 mb-2 product-name">
+        ساعة يد Geneva
+       </h3>
+<!-- الوصف -->
+<p class="text-gray-600 mb-4 product-description">
+        ساعة أنيقة بتصميم كلاسيكي فخم، هيكل معدني فضي وميناء أسود، مزودة بعقارب دقيقة وعدادات أنيقة.
+       </p>
+<!-- الأسعار -->
+<p class="text-gray-500 line-through mb-1">السعر السابق: dz3000</p>
+<p class="text-red-500 font-bold mb-4 product-price">السعر الآن: dz1500</p>
+<!-- زر الشراء -->
+<button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800 transition-colors">
+        اشتري الآن
+       </button>
+</div>
+</div>
+</div>
+
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-blue-900 text-white py-8">
+<div class="container mx-auto px-4">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-4 md:mb-0">
+<h3 class="text-xl font-bold mb-2">
+       روابط التواصل الاجتماعي
+      </h3>
+<div class="flex space-x-6 justify-center my-8">
+<!-- زر TikTok -->
+<a class="social-btn tiktok group" href="https://www.tiktok.com/@b0naffaire?_t=ZM-8tWMJWPHNBu&amp;_r=1" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-tiktok text-xl">
+</i>
+<span class="tooltip">
+         تابعنا على TikTok
+        </span>
+</a>
+<!-- زر Instagram -->
+<a class="social-btn instagram group" href="https://www.instagram.com/bonaffaire2025?igsh=MTZ6cm9ja2F1Y3Jtcg==" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-instagram text-xl">
+</i>
+<span class="tooltip">
+         تابعنا على Instagram
+        </span>
+</a>
+<!-- زر Facebook -->
+<a class="social-btn facebook group" href="https://www.facebook.com/profile.php?id=61572407734139" rel="noopener noreferrer" target="_blank">
+<i class="fab fa-facebook-f text-xl">
+</i>
+<span class="tooltip">
+         تابعنا على Facebook
+        </span>
+</a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-bold mb-2">
+       حقوق النشر وسياسة الاستخدام
+      </h3>
+<p class="text-gray-300">
+       © 2025 جميع الحقوق محفوظة BON Affaire.
+      </p>
+</div>
+</div>
+</div>
+</footer>
+<!-- Modal -->
+<div class="modal" id="orderModal">
+<div class="modal-content">
+<span class="close">
+     ×
+    </span>
+<h2 class="text-2xl font-bold mb-4">
+     تأكيد الطلب
+    </h2>
+<form action="https://formspree.io/f/xovjdwgg" id="orderForm" method="POST">
+<input id="productName" name="productName" type="hidden"/>
+<input id="productDescription" name="productDescription" type="hidden"/>
+<input id="productPrice" name="productPrice" type="hidden"/>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="firstName">
+       الاسم
+      </label>
+<input class="w-full px-3 py-2 border rounded-md" id="firstName" name="firstName" required="" type="text"/>
+</div>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="lastName">
+       اللقب
+      </label>
+<input class="w-full px-3 py-2 border rounded-md" id="lastName" name="lastName" required="" type="text"/>
+</div>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="phone">
+       رقم الهاتف
+      </label>
+<input class="w-full px-3 py-2 border rounded-md" id="phone" name="phone" required="" type="tel"/>
+<p class="text-red-500 text-sm mt-1 hidden" id="phoneError">
+       يرجى إدخال رقم صحيح
+      </p>
+</div>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="quantity">
+       الكمية
+      </label>
+<input class="w-full px-3 py-2 border rounded-md" id="quantity" max="5" name="quantity" required="" type="number"/>
+</div>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="state">
+       الولاية
+      </label>
+<select class="w-full px-3 py-2 border rounded-md" id="state" name="state" required="">
+<option value="">
+        اختر الولاية
+       </option>
+<option value="أدرار">
+        أدرار
+       </option>
+<option value="الشلف">
+        الشلف
+       </option>
+<option value="الأغواط">
+        الأغواط
+       </option>
+<option value="أم البواقي">
+        أم البواقي
+       </option>
+<option value="باتنة">
+        باتنة
+       </option>
+<option value="بجاية">
+        بجاية
+       </option>
+<option value="بسكرة">
+        بسكرة
+       </option>
+<option value="بشار">
+        بشار
+       </option>
+<option value="البليدة">
+        البليدة
+       </option>
+<option value="البويرة">
+        البويرة
+       </option>
+<option value="تمنراست">
+        تمنراست
+       </option>
+<option value="تبسة">
+        تبسة
+       </option>
+<option value="تلمسان">
+        تلمسان
+       </option>
+<option value="تيارت">
+        تيارت
+       </option>
+<option value="تيزي وزو">
+        تيزي وزو
+       </option>
+<option value="الجزائر العاصمة">
+        الجزائر العاصمة
+       </option>
+<option value="الجلفة">
+        الجلفة
+       </option>
+<option value="جيجل">
+        جيجل
+       </option>
+<option value="سطيف">
+        سطيف
+       </option>
+<option value="سعيدة">
+        سعيدة
+       </option>
+<option value="سكيكدة">
+        سكيكدة
+       </option>
+<option value="سيدي بلعباس">
+        سيدي بلعباس
+       </option>
+<option value="عنابة">
+        عنابة
+       </option>
+<option value="قالمة">
+        قالمة
+       </option>
+<option value="قسنطينة">
+        قسنطينة
+       </option>
+<option value="المدية">
+        المدية
+       </option>
+<option value="مستغانم">
+        مستغانم
+       </option>
+<option value="المسيلة">
+        المسيلة
+       </option>
+<option value="معسكر">
+        معسكر
+       </option>
+<option value="ورقلة">
+        ورقلة
+       </option>
+<option value="وهران">
+        وهران
+       </option>
+<option value="البيض">
+        البيض
+       </option>
+<option value="إليزي">
+        إليزي
+       </option>
+<option value="برج بوعريريج">
+        برج بوعريريج
+       </option>
+<option value="بومرداس">
+        بومرداس
+       </option>
+<option value="الطارف">
+        الطارف
+       </option>
+<option value="تندوف">
+        تندوف
+       </option>
+<option value="تيسمسيلت">
+        تيسمسيلت
+       </option>
+<option value="الوادي">
+        الوادي
+       </option>
+<option value="خنشلة">
+        خنشلة
+       </option>
+<option value="سوق أهراس">
+        سوق أهراس
+       </option>
+<option value="تيبازة">
+        تيبازة
+       </option>
+<option value="ميلة">
+        ميلة
+       </option>
+<option value="عين الدفلى">
+        عين الدفلى
+       </option>
+<option value="النعامة">
+        النعامة
+       </option>
+<option value="عين تموشنت">
+        عين تموشنت
+       </option>
+<option value="غرداية">
+        غرداية
+       </option>
+<option value="غليزان">
+        غليزان
+       </option>
+<option value="تيميمون">
+        تيميمون
+       </option>
+<option value="برج باجي مختار">
+        برج باجي مختار
+       </option>
+<option value="أولاد جلال">
+        أولاد جلال
+       </option>
+<option value="بني عباس">
+        بني عباس
+       </option>
+<option value="عين صالح">
+        عين صالح
+       </option>
+<option value="عين قزام">
+        عين قزام
+       </option>
+<option value="تقرت">
+        تقرت
+       </option>
+<option value="جانت">
+        جانت
+       </option>
+<option value="المغير">
+        المغير
+       </option>
+<option value="المنيعة">
+        المنيعة
+       </option>
+</select>
+<p class="text-red-500 text-sm mt-1 hidden" id="stateError">
+       يرجى اختيار الولاية
+      </p>
+</div>
+<div class="mb-4">
+<label class="block text-gray-700 mb-2" for="note">
+       ملاحظة (اختياري)
+      </label>
+<textarea class="w-full px-3 py-2 border rounded-md" id="note" name="note"></textarea>
+</div>
+<button class="px-4 py-2 bg-blue-900 text-white rounded-md" type="submit">
+      تأكيد الطلب
+     </button>
+</form>
+</div>
+</div>
+<div class="notification" id="notification">
+   تم استلام طلبك وسيتم التواصل معك قريبًا.
+   <button class="close-notification">
+    إغلاق
+   </button>
+</div>
+<script>
+   // فتح وإغلاق نافذة الدعم
+  const supportButton = document.getElementById('supportButton');
+  const supportModal = document.getElementById('supportModal');
+  const closeModal = document.getElementById('closeModal');
+
+  supportButton.addEventListener('click', () => {
+    supportModal.classList.remove('hidden');
+  });
+
+  closeModal.addEventListener('click', () => {
+    supportModal.classList.add('hidden');
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // نظام الكاروسيل الجديد
+    const carousels = document.querySelectorAll('.carousel-inner');
+    
+    carousels.forEach(carousel => {
+      const items = carousel.querySelectorAll('.carousel-item');
+      const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+      const prevBtn = carousel.parentElement.querySelector('.carousel-prev');
+      const nextBtn = carousel.parentElement.querySelector('.carousel-next');
+      let currentIndex = 0;
+
+      const showSlide = (index) => {
+        items.forEach(item => item.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        items[index].classList.add('active');
+        dots[index].classList.add('active');
+      };
+
+      // التهيئة الأولية
+      showSlide(currentIndex);
+
+      // أحداث النقاط
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          currentIndex = index;
+          showSlide(currentIndex);
+        });
+      });
+
+      // أحداث الأسهم
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        showSlide(currentIndex);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        showSlide(currentIndex);
+      });
+    });
+
+    // بقية الوظائف الأصلية
+    const modal = document.getElementById("orderModal");
+    const openModalButtons = document.querySelectorAll(".open-modal");
+    const closeModalButton = document.querySelector(".close");
+
+    openModalButtons.forEach(button => {
+      button.addEventListener("click", (event) => {
+        const productCard = event.target.closest('.three-d-card');
+        const productName = productCard.querySelector('.product-name').textContent;
+        const productDescription = productCard.querySelector('.product-description').textContent;
+        const productPrice = productCard.querySelector('.product-price').textContent;
+
+        document.getElementById('productName').value = productName;
+        document.getElementById('productDescription').value = productDescription;
+        document.getElementById('productPrice').value = productPrice;
+
+        modal.style.display = "block";
+      });
+    });
+
+    closeModalButton.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    const scrollToElements = document.querySelectorAll('.scroll-to');
+    scrollToElements.forEach(element => {
+      element.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const orderForm = document.getElementById('orderForm');
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phoneError');
+    const stateInput = document.getElementById('state');
+    const stateError = document.getElementById('stateError');
+    const notification = document.getElementById('notification');
+    const closeNotificationButton = document.querySelector('.close-notification');
+
+    orderForm.addEventListener('submit', function(event) {
+      const phoneValue = phoneInput.value;
+      const phonePattern = /^(05|06|07)\d{8}$/;
+      const stateValue = stateInput.value;
+
+      let valid = true;
+
+      if (!phonePattern.test(phoneValue)) {
+        event.preventDefault();
+        phoneError.classList.remove('hidden');
+        valid = false;
+      } else {
+        phoneError.classList.add('hidden');
+      }
+
+      if (stateValue === "") {
+        event.preventDefault();
+        stateError.classList.remove('hidden');
+        valid = false;
+      } else {
+        stateError.classList.add('hidden');
+      }
+
+      if (valid) {
+        event.preventDefault();
+        const order = {
+          productName: document.getElementById('productName').value,
+          productDescription: document.getElementById('productDescription').value,
+          productPrice: document.getElementById('productPrice').value,
+          quantity: document.getElementById('quantity').value,
+          date: new Date().toLocaleDateString()
+        };
+
+        const orders = JSON.parse(localStorage.getItem('orders')) || [];
+        orders.push(order);
+        localStorage.setItem('orders', JSON.stringify(orders));
+
+        const submitButton = orderForm.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        fetch(orderForm.action, {
+          method: orderForm.method,
+          body: new FormData(orderForm),
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            notification.style.display = 'block';
+            setTimeout(() => {
+              notification.style.display = 'none';
+              modal.style.display = 'none';
+              window.scrollTo({
+                top: document.getElementById('products').offsetTop,
+                behavior: 'smooth'
+              });
+            }, 3000);
+          } else {
+            response.json().then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                alert(data["errors"].map(error => error["message"]).join(", "));
+              } else {
+                alert("Oops! حدث خطأ ما عند إرسال النموذج.");
+              }
+            });
+          }
+        }).catch(error => {
+          alert("Oops! حدث خطأ ما عند إرسال النموذج.");
+        }).finally(() => {
+          submitButton.disabled = false;
+        });
+      }
+    });
+
+    closeNotificationButton.addEventListener('click', () => {
+      notification.style.display = 'none';
+    });
+
+    // نظام المنتجات من localStorage
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const productsContainer = document.getElementById('productsContainer');
+
+    products.forEach(product => {
+      const productCard = `
+        <div class="bg-white shadow-md rounded-md p-4 three-d-card">
+          <div class="relative group">
+            <div class="carousel-inner relative overflow-hidden rounded-lg">
+              ${product.images.map((image, index) => `
+                <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                  <img src="${image}" alt="${product.name}" class="w-full aspect-square object-cover">
+                </div>
+              `).join('')}
+            </div>
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+              ${product.images.map(() => `
+                <button class="carousel-dot w-3 h-3 rounded-full bg-white/50 transition-all"></button>
+              `).join('')}
+            </div>
+            <button class="carousel-prev absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">←</button>
+            <button class="carousel-next absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">→</button>
+          </div>
+          <div class="flex items-center mb-4">
+            ${'<i class="fas fa-star text-yellow-500"></i>'.repeat(product.rating)}
+            ${'<i class="fas fa-star text-gray-300"></i>'.repeat(5 - product.rating)}
+          </div>
+          <h3 class="text-xl font-bold text-blue-900 mb-2 product-name">${product.name}</h3>
+          <p class="text-gray-600 mb-4 product-description">${product.description}</p>
+          <p class="text-gray-500 line-through mb-1">السعر السابق: dz${product.previousPrice}</p>
+          <p class="text-red-500 font-bold mb-4 product-price">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
+          <button class="px-4 py-2 bg-blue-900 text-white rounded-md open-modal">اشتري الآن</button>
+        </div>
+      `;
+      productsContainer.innerHTML += productCard;
+    });
+  });
+  // تحميل المنتجات من localStorage وعرضها
+function loadProductsFromStorage() {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const productsContainer = document.getElementById('productsContainer');
+
+    products.forEach(product => {
+        const productCard = `
+            <div class="bg-white shadow-md rounded-md p-4 three-d-card">
+                <div class="relative group">
+                    <div class="carousel-inner relative overflow-hidden rounded-lg">
+                        ${product.images.map((img, index) => `
+                            <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                                <img src="${img}" alt="${product.name}" class="w-full aspect-square object-cover">
+                            </div>
+                        `).join('')}
+                    </div>
+                    <!-- النقاط والأسهم (نفس الهيكل الحالي) -->
+                </div>
+                <div class="mt-4">
+                    <div class="flex items-center mb-4">
+                        ${'<i class="fas fa-star text-yellow-500"></i>'.repeat(product.rating)}
+                        ${'<i class="fas fa-star text-gray-300"></i>'.repeat(5 - product.rating)}
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">${product.name}</h3>
+                    <p class="text-gray-600 mb-4">${product.description}</p>
+                    <p class="text-gray-500 line-through mb-1">السعر السابق: dz${product.previousPrice}</p>
+                    <p class="text-red-500 font-bold mb-4">السعر الآن: dz${product.currentPrice.toFixed(2)}</p>
+                    <button class="w-full px-4 py-2 bg-blue-900 text-white rounded-md open-modal hover:bg-blue-800">
+                        اشتري الآن
+                    </button>
+                </div>
+            </div>
+        `;
+        productsContainer.innerHTML += productCard;
+    });
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', loadProductsFromStorage);
+// في نهاية ملف script في index.html
+function refreshProducts() {
+    const productsContainer = document.getElementById('productsContainer');
+    productsContainer.innerHTML = ''; // مسح المحتوى القديم
+    loadProductsFromStorage(); // إعادة تحميل المنتجات
+}
+
+// استدعاء الدالة عند تغيير localStorage
+window.addEventListener('storage', refreshProducts);
+  </script>
+</body>
+</html>
